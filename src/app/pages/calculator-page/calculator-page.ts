@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { SharedModules } from '../../shared/shared.modules';
 
 @Component({
   selector: 'app-calculator-page',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, ...SharedModules],
   // standalone:true,
   templateUrl: './calculator-page.html',
   styleUrl: './calculator-page.scss',

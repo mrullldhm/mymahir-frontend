@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { SharedModules } from '../../shared/shared.modules';
 import { Api } from '../../services/api';
 import { MatTableDataSource } from '@angular/material/table';
-import { RouterLink } from "@angular/router";
+import { Router, RouterLink } from '@angular/router';
+import { Data } from '../../services/data';
 
 interface StudentItem {
   id: number;
@@ -25,7 +26,7 @@ export class StudentPage implements OnInit {
   public dataSource = new MatTableDataSource(this.studentData);
   public displayedColumns: string[] = ['no', 'name', 'student_no', 'actions'];
 
-  constructor(private apiService: Api) {}
+  constructor(private apiService: Api, private dataService: Data, private router: Router) {}
 
   async ngOnInit() {
     try {
@@ -40,5 +41,10 @@ export class StudentPage implements OnInit {
     } catch (err) {
       console.error('Error: ', err);
     }
+  }
+
+  onLogout() {
+    this.dataService.deleteStorage('token');
+    this.router.navigateByUrl('/login');
   }
 }

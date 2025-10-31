@@ -18,6 +18,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { Toolbar } from '../components/toolbar/toolbar';
 
 export const SharedModules = [
   MatToolbarModule,
@@ -39,5 +40,6 @@ export const SharedModules = [
   MatDialogTitle,
   MatFormFieldModule,
   MatTableModule,
-  ReactiveFormsModule
+  ReactiveFormsModule,
+  Toolbar
 ];

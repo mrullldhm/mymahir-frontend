@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { SharedModules } from '../../shared/shared.modules';
 import { Router, RouterLink } from '@angular/router';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Api } from '../../services/api';
 
 @Component({
@@ -15,10 +15,10 @@ export class AddPage {
 
   constructor(private fb: FormBuilder, private apiService: Api, private router: Router) {
     this.studentForm = this.fb.group({
-      name: [''],
-      student_no: [''],
-      email: [''],
-      phone: [''],
+      name: ['', Validators.required],
+      student_no: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', [Validators.required, Validators.pattern(/^.{8}$/)]],
     });
   }
 

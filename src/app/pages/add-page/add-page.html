@@ -3,31 +3,47 @@
     <mat-card-header>
       <mat-card-title>Add New Student</mat-card-title>
     </mat-card-header>
-    <mat-card-content style="margin-top: 1em;">
+    <mat-card-content style="margin-top: 1em">
       <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Student Name</mat-label>
           <input matInput formControlName="name" placeholder="Enter name" />
+          @if (studentForm.get('name')?.hasError('required')){
+          <mat-error> Student Name is required </mat-error>
+          }
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Student Number</mat-label>
           <input matInput formControlName="student_no" placeholder="Enter number " />
+          @if (studentForm.get('student_no')?.hasError('required')){
+          <mat-error> Student number is required </mat-error>
+          }
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Student Email</mat-label>
           <input matInput formControlName="email" placeholder="Enter email" />
+          @if (studentForm.get('email')?.hasError('required') ||
+          studentForm.get('email')?.hasError('email')){
+          <mat-error> Student email is required </mat-error>
+          }
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Student Phone Number</mat-label>
           <input matInput formControlName="phone" placeholder="Enter phone number" />
+          @if (studentForm.get('phone')?.hasError('required') ||
+          studentForm.get('phone')?.hasError('pattern')){
+          <mat-error> Student Name is required </mat-error>
+          }
         </mat-form-field>
 
         <mat-card-actions align="end">
           <button mat-raised-button type="button" routerLink="/students">Cancel</button>
-          <button mat-raised-button color="primary" type="submit">Submit</button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="!studentForm.valid">
+            Submit
+          </button>
         </mat-card-actions>
       </form>
     </mat-card-content>

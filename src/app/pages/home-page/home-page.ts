@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { SharedModules } from '../../shared/shared.modules';
 
 @Component({
   selector: 'app-home-page',
-  imports: [FormsModule],
+  imports: [FormsModule, ...SharedModules],
   // standalone : true,
   templateUrl: './home-page.html',
   styleUrl: './home-page.scss',

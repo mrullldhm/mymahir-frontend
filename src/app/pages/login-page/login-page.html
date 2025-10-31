@@ -1,0 +1,45 @@
+<div class="card-container">
+  <mat-card appearance="outlined" style="min-width: 200px; margin: 10em; margin-top: 0">
+    <mat-card-header>
+      <mat-card-title>Sign In</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content style="margin-top: 1em">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" placeholder="Enter email" />
+          @if (loginForm.get('email')?.hasError('required') ||
+          loginForm.get('email')?.hasError('email')){
+          <mat-error> Student email is required </mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Password</mat-label>
+          <input
+            class="password"
+            matInput
+            [type]="hidePassword ? 'password' : 'email'"
+            formControlName="password"
+            placeholder="Enter password"
+          />
+          <button mat-icon-button matSuffix (click)="togglePassword()" type="button">
+            <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+          @if (loginForm.get('password')?.hasError('required')){
+          <mat-error> Password is required </mat-error>
+          }
+        </mat-form-field>
+
+        <mat-card-actions align="end">
+          <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">
+            Submit
+          </button>
+        </mat-card-actions>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <button mat-button routerLink="/students">Back</button>
+</div>
